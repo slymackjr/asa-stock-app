@@ -33,14 +33,14 @@ const NavBar = ({
   }, []);
 
   return (
-    <div className="bg-gray-50 min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col">
       {/* Navbar */}
       <nav className="fixed top-0 z-50 w-full bg-white shadow">
         <div className="px-3 py-3 lg:px-5 lg:pl-3 flex items-center justify-between">
           <Link to="/" className="flex items-center">
             <img src={skuliAppLogo} alt="App Logo" className="w-40" /> {/* Replace logo with your app logo */}
           </Link>
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-10">
             <button
               className="lg:hidden text-gray-700"
               onClick={() => setIsNavOpen(!isNavOpen)}
@@ -71,10 +71,14 @@ const NavBar = ({
         </div>
       </nav>
 
+      {/* Gray Overlay for Mobile Nav (only show in mobile view when nav is open) */}
+      {isNavOpen && (
+        <div className="fixed inset-0 bg-gray-900 opacity-50 z-30 lg:hidden" onClick={() => setIsNavOpen(false)}></div>
+      )}
       {/* Page Layout */}
-      <div className="flex flex-1 pt-16">
+      <div className="flex flex-1 pt-16 mt-2 h-full">
         <aside
-          className={`lg:w-64 bg-white shadow-lg lg:block ${isNavOpen ? 'block' : 'hidden'} fixed lg:relative z-40`}
+          className={`lg:w-64 bg-white shadow-lg lg:block ${isNavOpen ? 'h-screen' : 'hidden'} fixed lg:relative z-40 lg:h-screen h-full`}
           ref={navRef}
         >
           <ul className="p-4 space-y-4">
