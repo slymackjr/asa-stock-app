@@ -31,12 +31,12 @@ const Login = () => {
         // Save the token, ability, and user in local storage
         localStorage.setItem('token', token);
         localStorage.setItem('ability', ability);
-        localStorage.setItem('user', JSON.stringify(user));
-  
+        localStorage.setItem('user', user);
+        console.log(response.data);
         // Redirect based on user ability (role)
         if (ability === 'admin' && token) {
           navigate('/dashboard');
-        } if (ability == 'user' && token) {
+        } else if (ability == 'user' && token) {
           navigate('/user-dashboard');
         } else {
           navigate('/');

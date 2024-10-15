@@ -61,7 +61,7 @@ const UserDashboard = () => {
         <UserNavBar activeLink={'dashboard'}>
             <div className="flex flex-col flex-grow">
             <ToastContainer autoClose={5000} hideProgressBar={true} newestOnTop={true} closeOnClick pauseOnHover draggable />
-                <h1 className="text-3xl font-bold text-center mb-8">Product Dashboard</h1>
+                <h1 className="text-3xl font-bold text-center mb-8">Welcome,</h1>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
                     {/* Total Products Card */}

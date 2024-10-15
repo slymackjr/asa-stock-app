@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import { FaUserCircle, FaBars, FaTimes, FaTachometerAlt, FaBoxOpen, FaPlusCircle } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 import { logo } from '../assets/images';
+import axios from 'axios';
 
 const NavBar = ({
   children,
@@ -32,6 +33,27 @@ const NavBar = ({
     };
   }, []);
 
+  const handleLogout = async () => {
+    try {
+      // Call the logout API
+      await axios.post('http://localhost:8000/api/logout', {}, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+  
+      // Clear localStorage
+      localStorage.removeItem('token');
+      localStorage.removeItem('ability');
+      localStorage.removeItem('user');
+  
+      // Redirect to login page
+      navigate('/');
+    } catch (error) {
+      console.error('Error during logout:', error);
+    }
+  };
+
   return (
     <div className="bg-gray-80 min-h-screen flex flex-col">
       {/* Navbar */}
@@ -60,7 +82,7 @@ const NavBar = ({
                   </Link> */}
                   <button
                     className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
-                    onClick={() => navigate('/login')}
+                    onClick={handleLogout}
                   >
                     Sign Out
                   </button>

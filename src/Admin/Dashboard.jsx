@@ -15,7 +15,7 @@ const Dashboard = () => {
     useEffect(() => {
         const fetchProductsData = async () => {
             try {
-                const response = await axios.get('http://localhost:8000/api/products',{
+                const response = await axios.get('http://localhost:8000/api/all-products',{
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`,
                       },
@@ -61,7 +61,7 @@ const Dashboard = () => {
         <NavBar activeLink={'dashboard'}>
             <div className="flex flex-col flex-grow">
             <ToastContainer autoClose={5000} hideProgressBar={true} newestOnTop={true} closeOnClick pauseOnHover draggable />
-                <h1 className="text-3xl font-bold text-center mb-8">Product Dashboard</h1>
+                <h1 className="text-3xl font-bold text-center mb-8">Welcome,</h1>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
                     {/* Total Products Card */}

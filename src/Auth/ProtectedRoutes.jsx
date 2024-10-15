@@ -17,7 +17,7 @@ const ProtectedRoutes = ({ children }) => {
 
   if (!token) {
     if (ability !== 'user') {
-      return <Navigate to="/login" state={{ from: lastLocation }} replace />;
+      return <Navigate to="/" state={{ from: lastLocation }} replace />;
     } else {
       return <Navigate to={lastLocation} replace />;
     }
