@@ -21,7 +21,11 @@ const EditProduct = () => {
     useEffect(() => {
         const fetchProductDetails = async () => {
             try {
-                const response = await axios.get(`http://localhost:8000/api/product/${id}`);
+                const response = await axios.get(`http://localhost:8000/api/product/${id}/update`,{
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`,
+                      },
+                });
                 const product = response.data.data;
                 
                 setFormData({

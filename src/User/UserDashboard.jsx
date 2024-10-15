@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FaBox, FaBoxes, FaCalendarPlus, FaTimesCircle } from 'react-icons/fa';
 import moment from 'moment';
-import { NavBar } from '../components';
+import { UserNavBar } from '../components';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Dashboard = () => {
+const UserDashboard = () => {
     const [totalProducts, setTotalProducts] = useState(0);
     const [recentProducts, setRecentProducts] = useState([]);
     const [loading, setLoading] = useState(true); // For loading the product
@@ -15,7 +15,11 @@ const Dashboard = () => {
     useEffect(() => {
         const fetchProductsData = async () => {
             try {
-                const response = await axios.get('http://localhost:8000/api/products');
+                const response = await axios.get('http://localhost:8000/api/products',{
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`,
+                      },
+                });
                 const allProducts = response.data.data;
 
                 // Total number of products
@@ -54,7 +58,7 @@ const Dashboard = () => {
     }
 
     return (
-        <NavBar activeLink={'dashboard'}>
+        <UserNavBar activeLink={'dashboard'}>
             <div className="flex flex-col flex-grow">
             <ToastContainer autoClose={5000} hideProgressBar={true} newestOnTop={true} closeOnClick pauseOnHover draggable />
                 <h1 className="text-3xl font-bold text-center mb-8">Product Dashboard</h1>
@@ -120,9 +124,9 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div>
-        </NavBar>
+        </UserNavBar>
 
     );
 };
 
-export default Dashboard;
+export default UserDashboard;

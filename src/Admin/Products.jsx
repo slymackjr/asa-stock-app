@@ -16,7 +16,11 @@ const Products = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await axios.get('http://localhost:8000/api/products');
+                const response = await axios.get('http://localhost:8000/api/products',{
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`,
+                      },
+                });
                 setProducts(response.data.data);
                 setLoading(false);
             } catch (error) {
@@ -49,7 +53,11 @@ const Products = () => {
         const confirmDelete = window.confirm('Are you sure you want to delete this product?');
         if (confirmDelete) {
             try {
-                await axios.delete(`http://localhost:8000/api/product/${id}/delete`);
+                await axios.delete(`http://localhost:8000/api/product/${id}/delete`, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`,
+                      },
+                });
                 setProducts(products.filter(product => product.id !== id)); // Remove deleted product from list
                 toast.success(
                     <div className="flex items-center">

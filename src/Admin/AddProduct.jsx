@@ -29,7 +29,11 @@ const AddProduct = () => {
 
         try {
             // Make API request to add product
-            const response = await axios.post('http://localhost:8000/api/add-product', formData);
+            const response = await axios.post('http://localhost:8000/api/add-product', formData, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                  },
+            });
 
             // Show success message
             toast.success(
