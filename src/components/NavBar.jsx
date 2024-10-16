@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import { FaUserCircle, FaBars, FaTimes, FaTachometerAlt, FaBoxOpen, FaPlusCircle } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 import { logo } from '../assets/images';
-import axios from 'axios';
+import axiosInstance from '../Hooks/Axios';
 
 const NavBar = ({
   children,
@@ -36,11 +36,7 @@ const NavBar = ({
   const handleLogout = async () => {
     try {
       // Call the logout API
-      await axios.post('http://localhost:8000/api/logout', {}, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      });
+      await axiosInstance.post('/logout', {});
   
       // Clear localStorage
       localStorage.removeItem('token');
@@ -50,12 +46,11 @@ const NavBar = ({
       // Redirect to login page
       navigate('/');
     } catch (error) {
-      console.error('Error during logout:', error);
     }
   };
 
   return (
-    <div className="bg-gray-80 min-h-screen flex flex-col">
+    <div className="bg-gray-100 min-h-screen flex flex-col">
       {/* Navbar */}
       <nav className="fixed top-0 z-50 w-full bg-white shadow">
         <div className="px-3 py-1 lg:px-5 lg:pl-3 flex items-center justify-between">
@@ -125,7 +120,7 @@ const NavBar = ({
           </ul>
         </aside>
 
-        <main className="flex-1 p-4 lg:ml-50">
+        <main className="flex-1 p-4 lg:ml-50  max-w-full">
           {children}
         </main>
       </div>

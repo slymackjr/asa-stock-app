@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { FaBarcode, FaTag, FaLocationArrow, FaDollarSign, FaBoxes, FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import axios from 'axios';
 import { NavBar } from '../components';
+import axiosInstance from '../Hooks/Axios';
 
 const AddProduct = () => {
     const [formData, setFormData] = useState({
@@ -29,17 +29,13 @@ const AddProduct = () => {
 
         try {
             // Make API request to add product
-            const response = await axios.post('http://localhost:8000/api/add-product', formData, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`,
-                  },
-            });
+            const response = await axiosInstance.post('/add-product', formData);
 
             // Show success message
             toast.success(
                 <div className="flex items-center">
                     <FaCheckCircle className="text-white bg-green-500 rounded-full mr-2 p-1" />
-                    Product added successfully!
+                    {response.data.message}
                 </div>,
                 { position: 'top-center' }
             );
@@ -52,15 +48,14 @@ const AddProduct = () => {
                 price: '',
                 quantity: '',
             });
-        } catch (error) {
-            // Show error message
+        } catch ( error) {
             toast.error(
                 <div className="flex items-center">
                     <FaTimesCircle className="text-white bg-red-500 rounded-full mr-2 p-1" />
                     Failed to add product. Please try again.
                 </div>,
                 { position: 'top-center' }
-            );
+            );        
         }
     };
 

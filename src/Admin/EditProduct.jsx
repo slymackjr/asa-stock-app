@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 import { FaBarcode, FaTag, FaLocationArrow, FaDollarSign, FaBoxes, FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import axios from 'axios';
 import { NavBar } from '../components';
+import axiosInstance from '../Hooks/Axios';
 
 const EditProduct = () => {
     const { id } = useParams(); // Get product ID from URL parameters
@@ -21,11 +21,7 @@ const EditProduct = () => {
     useEffect(() => {
         const fetchProductDetails = async () => {
             try {
-                const response = await axios.get(`http://localhost:8000/api/product/${id}`,{
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}`,
-                      },
-                });
+                const response = await axiosInstance.get(`/product/${id}`);
                 const product = response.data.data;
                 
                 setFormData({
@@ -65,13 +61,13 @@ const EditProduct = () => {
         e.preventDefault();
         
         try {
-            const response = await axios.put(`http://localhost:8000/api/product/${id}/update`, formData);
+            const response = await axiosInstance.put(`/product/${id}/update`, formData);
 
             // Show success message
             toast.success(
                 <div className="flex items-center">
                     <FaCheckCircle className="text-white bg-green-500 rounded-full mr-2 p-1" />
-                    Product updated successfully!
+                    {response.data.message}
                 </div>,
                 { position: 'top-center' }
             );

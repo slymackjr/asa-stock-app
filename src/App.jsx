@@ -36,7 +36,7 @@ function App() {
                     }
                 />
           <Route
-                    path="//product/:id/edit"
+                    path="/product/:id/edit"
                     element={
                         <ProtectedRoutes>
                             <EditProduct />
