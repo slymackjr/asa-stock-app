@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FaBarcode, FaTag, FaLocationArrow, FaDollarSign, FaBoxes, FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
+import { FaBarcode, FaTag, FaLocationArrow, FaBoxes, FaCheckCircle, FaTimesCircle, FaMoneyBill } from 'react-icons/fa';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { NavBar } from '../components';
@@ -123,7 +123,7 @@ const AddProduct = () => {
                     <div>
                         <label className="block text-gray-700">Price</label>
                         <div className="relative">
-                            <FaDollarSign className="absolute top-3 left-3 text-gray-400" />
+                            <FaMoneyBill className="absolute top-3 left-3 text-gray-400" />
                             <input
                                 type="text"
                                 name="price"

@@ -149,6 +149,8 @@ const UserDashboard = () => {
                         <tr className="bg-gray-100 text-gray-600 uppercase text-sm leading-normal">
                             <th className="py-3 px-4 text-center">Product Name</th>
                             <th className="py-3 px-4 text-center">Part Number</th>
+                            <th className="py-3 px-4 text-center">Quantity</th>
+                            <th className="py-3 px-4 text-center">Price</th>
                             <th className="py-3 px-4 text-center">Shelf Location</th>
                             <th className="py-3 px-4 text-center">Added On</th>
                         </tr>
@@ -165,6 +167,8 @@ const UserDashboard = () => {
                                 <tr key={product.id} className="hover:bg-gray-100 transition duration-200">
                                     <td className="py-3 px-4 border-b text-center">{product.productName}</td>
                                     <td className="py-3 px-4 border-b text-center">{product.partNumber}</td>
+                                    <td className="py-3 px-4 border-b text-center">{product.quantity}</td>
+                                    <td className="py-3 px-4 border-b text-center">{product.price}</td>
                                     <td className="py-3 px-4 border-b text-center">{product.shelfLocation}</td>
                                     <td className="py-3 px-4 border-b text-center">
                                         {moment(product.created_at).format('MMMM Do YYYY')}

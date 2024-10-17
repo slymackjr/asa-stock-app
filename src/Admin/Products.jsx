@@ -150,6 +150,8 @@ const Products = () => {
                                 <tr className="bg-gray-100 text-gray-600 uppercase text-sm leading-normal">
                                     <th className="py-3 px-4 text-left">Product Name</th>
                                     <th className="py-3 px-4 text-left">Part Number</th>
+                                    <th className="py-3 px-4 text-left">quantity</th>
+                                    <th className="py-3 px-4 text-left">price</th>
                                     <th className="py-3 px-4 text-left">Shelf Location</th>
                                     <th className="py-3 px-4 text-left">Added On</th>
                                     <th className="py-3 px-4 text-left">Actions</th>
@@ -167,6 +169,8 @@ const Products = () => {
                                         <tr key={product.id} className="hover:bg-gray-100 transition duration-200">
                                             <td className="py-3 px-4 border-b">{product.productName}</td>
                                             <td className="py-3 px-4 border-b">{product.partNumber}</td>
+                                            <td className="py-3 px-4 border-b">{product.quantity}</td>
+                                            <td className="py-3 px-4 border-b">{product.price}</td>
                                             <td className="py-3 px-4 border-b">{product.shelfLocation}</td>
                                             <td className="py-3 px-4 border-b">
                                                 {moment(product.created_at).format('MMMM Do YYYY')}
