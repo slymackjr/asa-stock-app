@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'https://asa.co.tz/api',
+  baseURL: 'https://api.asa.co.tz/api',
 });
 
 axiosInstance.interceptors.request.use((config) => {
